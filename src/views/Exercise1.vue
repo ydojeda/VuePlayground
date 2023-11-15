@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { uuid } from 'vue-uuid'
 const header = ref('Shopping List App')
 const items = ref([
-  { text: '10 party hats', key: 1 },
-  { text: '2 board games', key: 2 },
-  { text: '20 cups', key: 3 }
+  { text: '10 party hats', key: uuid.v1() },
+  { text: '2 board games', key: uuid.v1() },
+  { text: '20 cups', key: uuid.v1() }
 ])
 const newItem = ref('')
 const isNewItemPriority = ref(false)
