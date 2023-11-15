@@ -6,11 +6,19 @@ const items = ref([
   { text: '2 board games', key: 2 },
   { text: '20 cups', key: 3 }
 ])
+const newItem = ref('')
+const isNewItemPriority = ref(false)
 </script>
 
 <template>
   <main>
     <h1>{{ header }}</h1>
+    <input v-model="newItem" type="text" placeholder="Add an item" />
+    <label>
+      <input type="checkbox" v-model="isNewItemPriority" />
+      High Priority
+    </label>
+
     <ul>
       <li v-for="item in items" :key="item.key">{{ item.text }}</li>
     </ul>
