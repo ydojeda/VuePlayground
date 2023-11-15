@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const header = ref('Shopping List App')
+const items = ref([
+  { text: '10 party hats', key: 1 },
+  { text: '2 board games', key: 2 },
+  { text: '20 cups', key: 3 }
+])
 </script>
 
 <template>
   <main>
     <h1>{{ header }}</h1>
+    <ul>
+      <li v-for="item in items" :key="item.key">{{ item.text }}</li>
+    </ul>
   </main>
 </template>
 
