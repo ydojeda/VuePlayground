@@ -3,18 +3,26 @@ import { ref } from 'vue'
 import { uuid } from 'vue-uuid'
 const header = ref('Shopping List App')
 const items = ref([
-  { text: '10 party hats', id: uuid.v1(), priority: false },
-  { text: '2 board games', id: uuid.v1(), priority: false },
-  { text: '20 cups', id: uuid.v1(), priority: false }
+  { text: '10 party hats', id: uuid.v1(), priority: false, purchased: false },
+  { text: '2 board games', id: uuid.v1(), priority: false, purchased: false },
+  { text: '20 cups', id: uuid.v1(), priority: false, purchased: true }
 ])
 const newItem = ref('')
 const isNewItemPriority = ref(false)
 const addNewItem = () => {
   if (newItem.value.length) {
-    items.value.push({ id: uuid.v1(), text: newItem.value, priority: isNewItemPriority.value })
+    items.value.push({
+      id: uuid.v1(),
+      text: newItem.value,
+      priority: isNewItemPriority.value,
+      purchased: false
+    })
     newItem.value = ''
     isNewItemPriority.value = false
   }
+}
+const togglePurchased = (item) => {
+  item.purchased = !item.purchased
 }
 </script>
 
@@ -28,7 +36,15 @@ const addNewItem = () => {
     </label>
     <p v-if="!items.length">Nothing to shop</p>
     <ul>
-      <li v-for="item in items" :key="item.id">{{ item.text }}</li>
+      <li
+        v-for="item in items"
+        :key="item.id"
+        class="static-class"
+        :class="{ strikeout: item.purchased, priority: item.priority }"
+        @click="togglePurchased(item)"
+      >
+        {{ item.text }}
+      </li>
     </ul>
   </main>
 </template>
