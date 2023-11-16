@@ -3,25 +3,31 @@ import { ref } from 'vue'
 import { uuid } from 'vue-uuid'
 const header = ref('Shopping List App')
 const items = ref([
-  { text: '10 party hats', key: uuid.v1() },
-  { text: '2 board games', key: uuid.v1() },
-  { text: '20 cups', key: uuid.v1() }
+  { text: '10 party hats', id: uuid.v1(), priority: false },
+  { text: '2 board games', id: uuid.v1(), priority: false },
+  { text: '20 cups', id: uuid.v1(), priority: false }
 ])
 const newItem = ref('')
 const isNewItemPriority = ref(false)
+const addNewItem = () => {
+  if (newItem.value.length) {
+    items.value.push({ id: uuid.v1(), text: newItem.value, priority: isNewItemPriority.value })
+    newItem.value = ''
+    isNewItemPriority.value = false
+  }
+}
 </script>
 
 <template>
   <main>
     <h1>{{ header }}</h1>
-    <input v-model="newItem" type="text" placeholder="Add an item" />
+    <input v-model="newItem" v-on:keyup.enter="addNewItem" type="text" placeholder="Add an item" />
     <label>
       <input type="checkbox" v-model="isNewItemPriority" />
       High Priority
     </label>
-
     <ul>
-      <li v-for="item in items" :key="item.key">{{ item.text }}</li>
+      <li v-for="item in items" :key="item.id">{{ item.text }}</li>
     </ul>
   </main>
 </template>
