@@ -13,13 +13,14 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-body {
-  background: #eff8ff;
-}
 nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
+}
+header {
+  position: absolute;
+  width: 100%;
 }
 
 nav a.router-link-exact-active {
