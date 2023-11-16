@@ -56,17 +56,8 @@ const togglePurchased = (item) => {
   padding-left: 10px;
   padding-right: 10px;
 }
-
-#app {
-  background: #fff;
-  padding: 2rem;
-  margin: 1rem;
-  border-radius: 3px;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.12),
-    0 2px 4px 0 rgba(0, 0, 0, 0.08);
-  width: 95%;
-  max-width: 900px;
+main {
+  padding: 10px;
 }
 
 h1 {
