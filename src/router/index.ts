@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Exercise1 from '../views/Exercise1.vue'
-import Exercise2 from '@/views/Exercise2.vue'
+import Exercise1 from '../views/VueFundamentals.vue'
+import Exercise2 from '@/views/ComponentFundamentals.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
