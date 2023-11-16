@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { uuid } from 'vue-uuid'
 const header = ref('Shopping List App')
 const items = ref([
@@ -7,6 +7,7 @@ const items = ref([
   { text: '2 board games', id: uuid.v1(), priority: false, purchased: false },
   { text: '20 cups', id: uuid.v1(), priority: false, purchased: true }
 ])
+const orderedItems = computed(() => [...items.value].reverse())
 const newItem = ref('')
 const isNewItemPriority = ref(false)
 const addNewItem = () => {
@@ -37,7 +38,7 @@ const togglePurchased = (item) => {
     <p v-if="!items.length">Nothing to shop</p>
     <ul>
       <li
-        v-for="item in items"
+        v-for="item in orderedItems"
         :key="item.id"
         class="static-class"
         :class="{ strikeout: item.purchased, priority: item.priority }"
