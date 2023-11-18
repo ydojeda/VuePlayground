@@ -4,6 +4,9 @@ html, body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
 }
+body {
+    margin: 0 0 0 62px
+}
 
 #app {
     font-family: 'Roboto', sans-serif;
