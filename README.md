@@ -7,7 +7,8 @@ Follow through [Vue 3 fundamentals](https://vueschool.io/courses/vue-js-fundamen
 
 ✅ **Output**: Functioning basic shopping list app that can create and toggle shopping list items
 
-## CRUD Todo List
+## CRUD Blog Post
+Use [dummyJSON](https://dummyjson.com/docs/posts) for posts and user data
 ### Goals
 - Build components similar to asknicely site and use LESS
 - Use Vue Router for performing create/update functionality
@@ -18,31 +19,30 @@ Follow through [Vue 3 fundamentals](https://vueschool.io/courses/vue-js-fundamen
 - sticky to the left side
 - two nav items: the VueSchool Tutorials output page, and the CRUD Todo List
 
-◻️ Todo Item Card
+◻️ Blog Post Item
 - Similar to "Response" box on asknicely
 
-◻️ Input Fields for Create/Update Form
+◻️ Input Fields for Create/Update Blog Post
 - Take note of the active/non-active styling
 
 ### Data Description
 (For creating a store)
 
-**Todo Item**
-- date
-- owner_id
-- text
-- isDone
-- priority: high, medium, low
-- tag_ids
-
-**Owners**
-- owner_id
-- name
+**User**
+- id
+- firstName
+- lastName
 - email
+- image
+- address_city
+- company_name
 
-**Tags**
-- tag_id
-- name
+**Posts**
+- id
+- text
+- userId
+- tags
+- reactions  
 
 
 ## Project Setup
