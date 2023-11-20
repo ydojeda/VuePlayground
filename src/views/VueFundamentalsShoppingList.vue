@@ -51,17 +51,13 @@ const togglePurchased = (item) => {
 </template>
 
 <style scoped>
-.counter {
-  font-size: 0.8rem;
-  padding-left: 10px;
-  padding-right: 10px;
-}
 main {
   padding: 10px;
 }
 
 h1 {
   color: #3d4852;
+  margin: 10px 0;
 }
 
 ul {
@@ -91,6 +87,7 @@ p {
   font-size: 1.25rem;
   cursor: pointer;
   transition: all 0.1s ease-in;
+  margin: 5px 0;
 }
 
 li:hover {
@@ -115,13 +112,6 @@ li input {
   margin: 0.5rem 0;
 }
 
-.add-item-form,
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .add-item-form input {
   width: 70%;
   border-radius: 3px;
@@ -133,45 +123,6 @@ li input {
   font-size: 1rem;
   letter-spacing: 0.5px;
   margin: 0.5rem 0;
-}
-
-.btn {
-  border: none;
-  border-radius: 3px;
-  margin: auto 0;
-  padding: 0.5rem 0.75rem;
-  flex-shrink: 0;
-  cursor: pointer;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  transition: all 0.1s ease-in;
-}
-
-.btn[disabled] {
-  background: #8795a1;
-}
-
-.btn[disabled]:hover {
-  background: #606f7b;
-}
-
-.btn-primary {
-  background: #6cb2eb;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: #3490dc;
-}
-
-.btn-cancel {
-  background: #ef5753;
-  color: #fff;
-}
-
-.btn-cancel:hover {
-  background: #e3342f;
-  color: #fff;
 }
 
 .strikeout {
