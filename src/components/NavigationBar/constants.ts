@@ -5,7 +5,7 @@ export const NavBarItemData = [
     icon_code: 'store'
   },
   {
-    pathId: '/todo',
+    pathId: '/blogpost',
     name: 'To do',
     icon_code: 'list-check'
   }

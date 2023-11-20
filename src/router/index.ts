@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ShoppingListPage from '../views/VueFundamentalsShoppingList.vue'
-import ToDoListPage from '@/views/TodoList.vue'
+import ToDoListPage from '@/views/BlogPostsList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +11,7 @@ const router = createRouter({
       component: ShoppingListPage
     },
     {
-      path: '/todo',
+      path: '/blogpost',
       name: 'To Do List',
       component: ToDoListPage
     }
