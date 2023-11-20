@@ -4,10 +4,11 @@ import * as StoreTypes from '@/store/types'
 const StoreMutations: MutationTree<StoreTypes.OverallState> = {
   resetData(
     state,
-    payload: { users: StoreTypes.BlogUsersState; blogPosts: StoreTypes.BlogPostsState }
+    payload: { users: StoreTypes.BlogUsersState; posts: StoreTypes.BlogPostsState }
   ) {
-    state.posts = { ...state.posts, ...payload.blogPosts }
     state.users = { ...state.users, ...payload.users }
+    state.posts = { ...state.posts, ...payload.posts }
+
     state.reactions = {}
   },
   createBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
