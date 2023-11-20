@@ -17,9 +17,6 @@ export type BlogPost = {
 export type BlogUsersState = {
   [userId: string]: BlogUser
 }
-export type BlogPostsState = {
-  [userId: string]: BlogPost[]
-}
 export type BlogPostReactionsState = {
   [userId: string]: {
     [postId: string]: boolean
@@ -28,7 +25,7 @@ export type BlogPostReactionsState = {
 
 export type OverallState = {
   users: BlogUsersState
-  posts: BlogPostsState
+  posts: BlogPost[]
   reactions: BlogPostReactionsState
 }
 

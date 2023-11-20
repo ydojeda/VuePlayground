@@ -2,47 +2,30 @@ import { type MutationTree } from 'vuex'
 import * as StoreTypes from '@/store/types'
 
 const StoreMutations: MutationTree<StoreTypes.OverallState> = {
-  resetData(
-    state,
-    payload: { users: StoreTypes.BlogUsersState; posts: StoreTypes.BlogPostsState }
-  ) {
+  resetData(state, payload: { users: StoreTypes.BlogUsersState; posts: StoreTypes.BlogPost[] }) {
     state.users = { ...state.users, ...payload.users }
-    state.posts = { ...state.posts, ...payload.posts }
+    state.posts = payload.posts
 
     state.reactions = {}
   },
   createBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
-    const userPosts = [...(state.posts[blogPost.userId] ?? []), blogPost]
-    state.posts = {
-      ...state.posts,
-      [blogPost.userId]: userPosts
-    }
+    state.posts = [...state.posts, blogPost]
   },
   updateBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
-    const userPosts = [...(state.posts[blogPost.userId] ?? [])]
-    const postIndex = userPosts.findIndex((post) => post.postId === blogPost.postId)
+    const postIndex = state.posts.findIndex((post) => post.postId === blogPost.postId)
     if (postIndex >= 0) {
-      userPosts[postIndex] = blogPost
-      state.posts = {
-        ...state.posts,
-        [blogPost.userId]: userPosts
-      }
+      state.posts[postIndex] = blogPost
     }
   },
   deleteBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
     const { userId, postId } = blogPost
-    if (state.posts[userId]?.length) {
-      state.posts = {
-        ...state.posts,
-        [userId]: state.posts[userId].filter((post) => post.postId !== postId)
-      }
-      if (state.reactions[userId]?.[postId]) {
-        const userReactions = { ...state.reactions[userId] }
-        delete userReactions[postId]
-        state.reactions = {
-          ...state.reactions,
-          [userId]: userReactions
-        }
+    state.posts = state.posts.filter((post) => post.postId !== blogPost.postId)
+    if (state.reactions[userId]?.[postId]) {
+      const userReactions = { ...state.reactions[userId] }
+      delete userReactions[postId]
+      state.reactions = {
+        ...state.reactions,
+        [userId]: userReactions
       }
     }
   }

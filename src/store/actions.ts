@@ -41,20 +41,14 @@ const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
             res
               .json()
               .then((data) => {
-                stateData['posts'] = (data['posts'] ?? []).reduce((posts: any, post: any) => {
+                stateData['posts'] = (data['posts'] ?? []).map((post: any) => {
                   const { id, userId, title, ...postData } = post
-                  const postId = id.toString()
-                  const strUserId = userId.toString()
-                  if (!posts[strUserId]) {
-                    posts[strUserId] = []
-                  }
-                  posts[strUserId].push({
-                    postId,
-                    userId: strUserId,
+                  return {
+                    postId: id.toString(),
+                    userId: userId.toString(),
                     ...postData
-                  })
-                  return posts
-                }, {})
+                  }
+                })
                 commit('resetData', stateData)
                 payload?.success?.()
               })
