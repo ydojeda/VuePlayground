@@ -17,6 +17,22 @@ const StoreMutations: MutationTree<StoreTypes.OverallState> = {
       state.posts[postIndex] = blogPost
     }
   },
+  changePostReact(state, payload: { userId: string; postId: string }) {
+    const postIndex = state.posts.findIndex((post) => post.postId === payload.postId)
+    if (postIndex >= 0) {
+      const newReact = !state.reactions[payload.userId]?.[payload.postId]
+      const reactCount = state.posts[postIndex].reactions ?? 0
+      state.reactions[payload.userId] = {
+        ...(state.reactions[payload.userId] ?? {}),
+        [payload.postId]: newReact
+      }
+      state.posts[postIndex] = {
+        ...state.posts[postIndex],
+        // if user has reacted to the post, add to count, if user unreacted, subtract the count
+        reactions: reactCount + (newReact ? 1 : 0)
+      }
+    }
+  },
   deleteBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
     const { userId, postId } = blogPost
     state.posts = state.posts.filter((post) => post.postId !== blogPost.postId)
