@@ -38,7 +38,7 @@ import BlogPostListMenu from '@/components/BlogPostListMenu.vue'
 const store = useStore()
 const router = useRouter()
 
-const currentUser = computed(() => store.getters.usersById['1'])
+const currentUser = computed(() => store.getters.currentUser)
 const allPosts = computed<BlogPost[]>(() => store.getters.allPosts)
 const userPosts = computed<BlogPost[]>(() =>
   store.getters.allPosts.filter((post: BlogPost) => post.userId === currentUser.value.userId)
