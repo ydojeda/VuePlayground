@@ -2,11 +2,24 @@ import { type MutationTree } from 'vuex'
 import * as StoreTypes from '@/store/types'
 
 const StoreMutations: MutationTree<StoreTypes.OverallState> = {
-  resetData(state, payload: { users: StoreTypes.BlogUsersState; posts: StoreTypes.BlogPost[] }) {
+  resetData(
+    state,
+    payload: {
+      users: StoreTypes.BlogUsersState
+      posts: StoreTypes.BlogPost[]
+      currentUser: StoreTypes.BlogUser
+    }
+  ) {
     state.users = { ...state.users, ...payload.users }
     state.posts = payload.posts
+    state.currentUser = payload.currentUser
 
     state.reactions = {}
+  },
+  setCurrentUser(state, userId: string) {
+    if (state.users[userId]) {
+      state.currentUser = state.users[userId]
+    }
   },
   createBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
     state.posts = [...state.posts, blogPost]

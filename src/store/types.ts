@@ -28,6 +28,7 @@ export type OverallState = {
   users: BlogUsersState
   posts: BlogPost[]
   reactions: BlogPostReactionsState
+  currentUser: BlogUser
 }
 
 export type ResActionsPayload = {

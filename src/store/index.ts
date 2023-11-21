@@ -7,7 +7,8 @@ import * as getters from './getters'
 const state: StoreTypes.OverallState = {
   users: {},
   posts: [],
-  reactions: {}
+  reactions: {},
+  currentUser: {} as StoreTypes.BlogUser
 }
 
 export default new Vuex.Store<StoreTypes.OverallState>({

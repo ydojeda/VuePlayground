@@ -6,7 +6,7 @@ import type { ResActionsPayload } from '@/store/types'
 
 const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
   resetUserData({ commit }, payload?: ResActionsPayload) {
-    const stateData = { users: {}, posts: {} }
+    const stateData = { users: {}, posts: {}, currentUser: null }
     fetch(
       'https://dummyjson.com/users?limit=0&select=firstName,lastName,email,image,address,company'
     )
@@ -17,6 +17,7 @@ const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
         res
           .json()
           .then((data) => {
+            stateData.currentUser = data['users']?.[0]
             stateData['users'] = (data['users'] || []).reduce((users: any, user: any) => {
               const { id, address, company, ...otherData } = user
               const userId = id.toString()
@@ -61,6 +62,9 @@ const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
           .catch(payload?.catch)
           .finally(payload?.finally)
       })
+  },
+  setCurrentUser({ commit }, payload: { userId: string }) {
+    commit('setCurrentUser', payload.userId)
   },
   createBlogPost({ commit }, payload: { post: StoreTypes.BlogPost }) {
     commit('createBlogPost', payload.post)
