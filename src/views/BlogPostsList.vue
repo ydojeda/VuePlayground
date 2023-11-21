@@ -4,11 +4,19 @@
       <UserSwitcher :current-user="currentUser" :user-id="currentUser.userId" />
       <button v-on:click="goToNewForm" class="add-new-post-button">New Post</button>
     </div>
+
     <div class="content-container">
       <h1 class="title-text">Blog posts</h1>
+
+      <BlogPostListMenu
+        :active-item="postsType"
+        :menu-items="['All', 'My Posts']"
+        :on-press-menu-item="changePostsType"
+      />
+
       <div class="posts-list-container">
         <BlogPostCard
-          v-for="post in allPosts"
+          v-for="post in postsType === 'All' ? allPosts : userPosts"
           :post="post"
           :current-user-id="currentUser.userId"
           :key="post.postId"
@@ -20,14 +28,22 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import UserSwitcher from '@/components/UserSwitcher.vue'
 import BlogPostCard from '@/components/BlogPostCard.vue'
 import { useRouter } from 'vue-router'
+import type { BlogPost } from '@/store/types'
+import BlogPostListMenu from '@/components/BlogPostListMenu.vue'
 
 const store = useStore()
+
 const currentUser = computed(() => store.getters.usersById['1'])
-const allPosts = computed(() => store.getters.allPosts)
+const allPosts = computed<BlogPost[]>(() => store.getters.allPosts)
+const userPosts = computed<BlogPost[]>(() =>
+  store.getters.allPosts.filter((post: BlogPost) => post.userId === currentUser.value.userId)
+)
+
+const postsType = ref('All')
 
 const router = useRouter()
 const goToNewForm = () => {
@@ -35,6 +51,11 @@ const goToNewForm = () => {
   router.push({
     name: 'Blog post form'
   })
+}
+const changePostsType = (type: string) => {
+  if (postsType.value !== type) {
+    postsType.value = type
+  }
 }
 </script>
 
