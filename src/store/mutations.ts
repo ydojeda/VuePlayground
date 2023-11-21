@@ -29,7 +29,7 @@ const StoreMutations: MutationTree<StoreTypes.OverallState> = {
       state.posts[postIndex] = {
         ...state.posts[postIndex],
         // if user has reacted to the post, add to count, if user unreacted, subtract the count
-        reactions: reactCount + (newReact ? 1 : 0)
+        reactions: reactCount + (newReact ? 1 : -1)
       }
     }
   },
