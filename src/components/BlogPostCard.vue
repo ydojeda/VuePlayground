@@ -23,9 +23,9 @@
           <FontAwesomeIcon :icon="['far', 'comment-dots']" />
           <a onclick="">Comment</a>
         </div>
-        <div v-if="true" class="delete-btn">
+        <div v-if="props.post?.userId === props.currentUserId" class="delete-btn">
           <FontAwesomeIcon :icon="['far', 'trash-can']" />
-          <a onclick="">Delete</a>
+          <a v-on:click="deletePost">Delete</a>
         </div>
       </div>
     </div>
@@ -65,8 +65,12 @@ const allTags = [
 ].filter((tag) => tag?.length)
 
 const toggleReaction = () => {
-  console.log('Will I dispatch?', { userId: user.value.userId, postId: props.post.postId })
   store.dispatch('changePostReact', { userId: props.currentUserId, postId: props.post?.postId })
+}
+const deletePost = () => {
+  if (props.post?.userId === props.currentUserId) {
+    store.dispatch('deleteBlogPost', props.post)
+  }
 }
 </script>
 
