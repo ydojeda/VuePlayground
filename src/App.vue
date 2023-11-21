@@ -17,14 +17,4 @@ onMounted(() => {
   <RouterView />
 </template>
 
-<style scoped>
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-}
-header {
-  position: absolute;
-  width: 100%;
-}
-</style>
+<style scoped></style>
