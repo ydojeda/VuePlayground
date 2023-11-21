@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="header-container">
       <UserSwitcher :current-user="currentUser" :user-id="currentUser.userId" />
-      <button v-on:click="addNewPost" class="add-new-post-button">New Post</button>
+      <button v-on:click="goToNewForm" class="add-new-post-button">New Post</button>
     </div>
 
     <div class="content-container">
@@ -27,16 +27,16 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex'
 import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import UserSwitcher from '@/components/UserSwitcher.vue'
 import BlogPostCard from '@/components/BlogPostCard.vue'
-import { useRouter } from 'vue-router'
 import type { BlogPost } from '@/store/types'
 import BlogPostListMenu from '@/components/BlogPostListMenu.vue'
-import { uuid } from 'vue-uuid'
 
 const store = useStore()
+const router = useRouter()
 
 const currentUser = computed(() => store.getters.usersById['1'])
 const allPosts = computed<BlogPost[]>(() => store.getters.allPosts)
@@ -46,7 +46,6 @@ const userPosts = computed<BlogPost[]>(() =>
 
 const postsType = ref('All')
 
-const router = useRouter()
 const goToNewForm = () => {
   console.log('attempting to go to new form')
   router.push({
@@ -57,18 +56,6 @@ const changePostsType = (type: string) => {
   if (postsType.value !== type) {
     postsType.value = type
   }
-}
-const addNewPost = () => {
-  store.dispatch('createBlogPost', {
-    post: {
-      postId: uuid.v1(),
-      body: 'Lorem ipsum',
-      userId: currentUser.value.userId,
-      tags: ['Random', 'Test'],
-      reactions: 0,
-      createDate: new Date().toISOString()
-    }
-  })
 }
 </script>
 
