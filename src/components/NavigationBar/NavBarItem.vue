@@ -1,3 +1,10 @@
+<template>
+  <router-link :to="props.pathId" v-slot="{ isActive }" class="item-container">
+    <div v-if="isActive" class="active-bar-indicator" />
+    <font-awesome-icon :icon="['fas', props.icon]" font-size="25" />
+  </router-link>
+</template>
+
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 const props = defineProps({
@@ -15,13 +22,6 @@ const props = defineProps({
   }
 })
 </script>
-
-<template>
-  <router-link :to="props.pathId" v-slot="{ isActive }" class="item-container">
-    <div v-if="isActive" class="active-bar-indicator" />
-    <font-awesome-icon :icon="['fas', props.icon]" font-size="25" />
-  </router-link>
-</template>
 
 <style scoped lang="less">
 .item-container {

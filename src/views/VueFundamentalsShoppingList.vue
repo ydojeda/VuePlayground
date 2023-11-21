@@ -1,3 +1,26 @@
+<template>
+  <main>
+    <h1>{{ header }}</h1>
+    <input v-model="newItem" v-on:keyup.enter="addNewItem" type="text" placeholder="Add an item" />
+    <label>
+      <input type="checkbox" v-model="isNewItemPriority" />
+      High Priority
+    </label>
+    <p v-if="!items.length">Nothing to shop</p>
+    <ul>
+      <li
+        v-for="item in orderedItems"
+        :key="item.id"
+        class="static-class"
+        :class="{ strikeout: item.purchased, priority: item.priority }"
+        @click="togglePurchased(item)"
+      >
+        {{ item.text }}
+      </li>
+    </ul>
+  </main>
+</template>
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { uuid } from 'vue-uuid'
@@ -26,29 +49,6 @@ const togglePurchased = (item) => {
   item.purchased = !item.purchased
 }
 </script>
-
-<template>
-  <main>
-    <h1>{{ header }}</h1>
-    <input v-model="newItem" v-on:keyup.enter="addNewItem" type="text" placeholder="Add an item" />
-    <label>
-      <input type="checkbox" v-model="isNewItemPriority" />
-      High Priority
-    </label>
-    <p v-if="!items.length">Nothing to shop</p>
-    <ul>
-      <li
-        v-for="item in orderedItems"
-        :key="item.id"
-        class="static-class"
-        :class="{ strikeout: item.purchased, priority: item.priority }"
-        @click="togglePurchased(item)"
-      >
-        {{ item.text }}
-      </li>
-    </ul>
-  </main>
-</template>
 
 <style scoped>
 main {

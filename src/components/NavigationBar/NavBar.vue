@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import { NavBarItemData } from './constants'
-import NavBarItem from '@/components/NavigationBar/NavBarItem.vue'
-</script>
-
 <template>
   <div class="nav-container">
     <NavBarItem
@@ -14,6 +9,11 @@ import NavBarItem from '@/components/NavigationBar/NavBarItem.vue'
     />
   </div>
 </template>
+
+<script setup lang="ts">
+import { NavBarItemData } from './constants'
+import NavBarItem from '@/components/NavigationBar/NavBarItem.vue'
+</script>
 
 <style scoped>
 .nav-container {
