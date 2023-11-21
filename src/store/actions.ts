@@ -6,7 +6,7 @@ import type { ResActionsPayload } from '@/store/types'
 
 const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
   resetUserData({ commit }, payload?: ResActionsPayload) {
-    const stateData = { users: {}, posts: {}, currentUser: null }
+    const stateData = { users: {}, posts: {}, currentUser: null as any }
     fetch(
       'https://dummyjson.com/users?limit=0&select=firstName,lastName,email,image,address,company'
     )
@@ -29,6 +29,7 @@ const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
               }
               return users
             }, {})
+            stateData.currentUser = Object.values(stateData.users)[0]
           })
           .catch(payload?.catch)
       })
