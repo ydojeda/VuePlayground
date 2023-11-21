@@ -33,15 +33,14 @@ const StoreMutations: MutationTree<StoreTypes.OverallState> = {
       }
     }
   },
-  deleteBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
-    const { userId, postId } = blogPost
-    state.posts = state.posts.filter((post) => post.postId !== blogPost.postId)
-    if (state.reactions[userId]?.[postId]) {
-      const userReactions = { ...state.reactions[userId] }
-      delete userReactions[postId]
+  deleteBlogPost(state: StoreTypes.OverallState, payload: { userId: string; postId: string }) {
+    state.posts = state.posts.filter((post) => post.postId !== payload.postId)
+    if (state.reactions[payload.userId]?.[payload.postId] != null) {
+      const userReactions = { ...state.reactions[payload.userId] }
+      delete userReactions[payload.postId]
       state.reactions = {
         ...state.reactions,
-        [userId]: userReactions
+        [payload.userId]: userReactions
       }
     }
   }

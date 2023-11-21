@@ -71,8 +71,8 @@ const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
   updateBlogPost({ commit }, payload: { post: StoreTypes.BlogPost }) {
     commit('updateBlogPost', payload.post)
   },
-  deleteBlogPost({ commit }, payload: { post: StoreTypes.BlogPost }) {
-    commit('deleteBlogPost', payload.post)
+  deleteBlogPost({ commit }, payload: { userId: string; postId: string }) {
+    commit('deleteBlogPost', payload)
   }
 }
 
