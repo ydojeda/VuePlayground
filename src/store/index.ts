@@ -6,7 +6,7 @@ import * as getters from './getters'
 
 const state: StoreTypes.OverallState = {
   users: {},
-  posts: {},
+  posts: [],
   reactions: {}
 }
 
