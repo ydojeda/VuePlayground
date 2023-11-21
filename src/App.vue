@@ -27,9 +27,4 @@ header {
   position: absolute;
   width: 100%;
 }
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-  margin: 5px;
-}
 </style>
