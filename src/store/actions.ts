@@ -43,9 +43,13 @@ const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
               .then((data) => {
                 stateData['posts'] = (data['posts'] ?? []).map((post: any) => {
                   const { id, userId, title, ...postData } = post
+                  /* Calculating random date */
+                  const minTime = new Date('2000-01-01').getTime()
+                  const today = new Date().getTime()
                   return {
                     postId: id.toString(),
                     userId: userId.toString(),
+                    createDate: new Date(minTime + Math.random() * (today - minTime)).toISOString(),
                     ...postData
                   }
                 })

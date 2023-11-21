@@ -13,6 +13,7 @@ export type BlogPost = {
   userId: string
   tags: string[]
   reactions: number
+  createDate: string
 }
 export type BlogUsersState = {
   [userId: string]: BlogUser
