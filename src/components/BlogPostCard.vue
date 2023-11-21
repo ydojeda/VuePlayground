@@ -75,7 +75,7 @@ const toggleReaction = () => {
   position: relative;
   border-radius: 3px;
   border: rgb(245, 246, 247) 2px solid;
-  padding: 20px 20px 20px 15px;
+  padding: 20px 20px 15px 15px;
   margin-top: 40px;
   flex: 1;
   display: flex;
