@@ -15,15 +15,16 @@ Use [dummyJSON](https://dummyjson.com/docs/posts) for posts and user data
 - Use Vuex state management and store list items
 
 ### Main Components
-◻️ Vertical Navigation Bar
+✅ Vertical Navigation Bar
 - sticky to the left side
 - two nav items: the VueSchool Tutorials output page, and the CRUD Todo List
 
-◻️ Blog Post Item
+✅ Blog Post Item
 - Similar to "Response" box on asknicely
 
 ◻️ Input Fields for Create/Update Blog Post
 - Take note of the active/non-active styling
+- Add input fields for switching users
 
 ### Data Description
 (For creating a store)
