@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="header-container">
       <UserSwitcher :current-user="currentUser" :user-id="currentUser.userId" />
-      <button v-on:click="goToNewForm" class="add-new-post-button">New Post</button>
+      <button v-on:click="addNewPost" class="add-new-post-button">New Post</button>
     </div>
 
     <div class="content-container">
@@ -34,6 +34,7 @@ import BlogPostCard from '@/components/BlogPostCard.vue'
 import { useRouter } from 'vue-router'
 import type { BlogPost } from '@/store/types'
 import BlogPostListMenu from '@/components/BlogPostListMenu.vue'
+import { uuid } from 'vue-uuid'
 
 const store = useStore()
 
@@ -56,6 +57,18 @@ const changePostsType = (type: string) => {
   if (postsType.value !== type) {
     postsType.value = type
   }
+}
+const addNewPost = () => {
+  store.dispatch('createBlogPost', {
+    post: {
+      postId: uuid.v1(),
+      body: 'Lorem ipsum',
+      userId: currentUser.value.userId,
+      tags: ['Random', 'Test'],
+      reactions: 0,
+      createDate: new Date().toISOString()
+    }
+  })
 }
 </script>
 
