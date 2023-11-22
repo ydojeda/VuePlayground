@@ -12,7 +12,7 @@
 
       <div class="posts-list-container">
         <BlogPostCard
-          v-for="post in postsType === 'All' ? allPosts : userPosts"
+          v-for="post in posts"
           :post="post"
           :current-user-id="currentUser.userId"
           :key="post.postId"
@@ -33,12 +33,13 @@ import BlogPostListHeader from '@/components/BlogPostListHeader.vue'
 const store = useStore()
 
 const currentUser = computed(() => store.getters.currentUser)
-const allPosts = computed<BlogPost[]>(() => store.getters.allPosts)
-const userPosts = computed<BlogPost[]>(() =>
-  store.getters.allPosts.filter((post: BlogPost) => post.userId === currentUser.value.userId)
-)
-
 const postsType = ref('All')
+const posts = computed<BlogPost[]>(() => {
+  const posts = store.getters.allPosts
+  return postsType.value === 'All'
+    ? posts
+    : posts.filter((post: BlogPost) => post.userId === currentUser.value.userId)
+})
 
 const changePostsType = (type: string) => {
   if (postsType.value !== type) {
