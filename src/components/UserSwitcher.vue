@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, type PropType } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { type BlogUser } from '@/store/types'
 
