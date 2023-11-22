@@ -1,10 +1,6 @@
 <template>
   <div class="page-container">
-    <div class="header-container">
-      <UserSwitcher :current-user="currentUser" :user-id="currentUser.userId" />
-      <button v-on:click="goToNewForm" class="add-new-post-button">New Post</button>
-    </div>
-
+    <BlogPostListHeader />
     <div class="content-container">
       <h1 class="title-text">Blog posts</h1>
 
@@ -29,14 +25,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
-import UserSwitcher from '@/components/UserSwitcher.vue'
 import BlogPostCard from '@/components/BlogPostCard.vue'
 import type { BlogPost } from '@/store/types'
 import BlogPostListMenu from '@/components/BlogPostListMenu.vue'
+import BlogPostListHeader from '@/components/BlogPostListHeader.vue'
 
 const store = useStore()
-const router = useRouter()
 
 const currentUser = computed(() => store.getters.currentUser)
 const allPosts = computed<BlogPost[]>(() => store.getters.allPosts)
@@ -46,12 +40,6 @@ const userPosts = computed<BlogPost[]>(() =>
 
 const postsType = ref('All')
 
-const goToNewForm = () => {
-  console.log('attempting to go to new form')
-  router.push({
-    name: 'Blog post form'
-  })
-}
 const changePostsType = (type: string) => {
   if (postsType.value !== type) {
     postsType.value = type
@@ -63,25 +51,11 @@ const changePostsType = (type: string) => {
 .page-container {
   margin: 0 10px;
 }
-.page-content-base {
+.content-container {
   background-color: white;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 20px 35px;
-}
-.content-container {
-  .page-content-base();
-}
-.header-container {
-  .page-content-base();
-  position: sticky;
-  left: 0;
-  right: 10px;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
 }
 .title-text {
   margin: 20px 0;
@@ -89,18 +63,5 @@ const changePostsType = (type: string) => {
 .posts-list-container {
   display: flex;
   flex-direction: column;
-}
-.add-new-post-button {
-  line-height: 32px;
-  font-size: 14px;
-  color: white;
-  padding: 0 16px;
-  border: rgb(36, 137, 218) 1px solid;
-  border-radius: 4px;
-  background-color: rgb(43, 155, 244);
-  cursor: pointer;
-  &:hover {
-    background-color: #2489da;
-  }
 }
 </style>
