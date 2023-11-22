@@ -21,7 +21,7 @@ const props = defineProps({
     required: false
   },
   menuItems: {
-    type: Array as PropType<string[]>,
+    type: Array<String>,
     required: true
   },
   activeItem: {
