@@ -37,7 +37,7 @@ import type { BlogUser } from '@/store/types'
 
 const store = useStore()
 const router = useRouter()
-const isSelectionMode = ref(true)
+const isSelectionMode = ref(false)
 const isSearching = ref(false)
 const searchValue = ref('')
 const timeoutVar = ref(0)
