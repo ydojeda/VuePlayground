@@ -13,7 +13,7 @@
     </div>
     <div v-if="showInputBar" class="new-tag-input-container">
       <input
-        name="newTagsInput"
+        id="newTagsInput"
         v-model="newTags"
         class="new-tag-input"
         placeholder="Enter comma separated tags"
