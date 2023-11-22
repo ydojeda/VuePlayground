@@ -4,8 +4,9 @@
       <h2>Add Post</h2>
       <PostTags :tags="tags" :on-add-tags="addTags" :on-remove-tags="removeTag" />
       <textarea
+        id="blogpostbodyinput"
         class="body-input"
-        :value="body"
+        v-model="body"
         placeholder="What's on your mind?"
         @focus="isBodyFocused = true"
         @blur="isBodyFocused = false"
@@ -72,6 +73,7 @@ h2 {
   font-weight: 400;
 }
 .body-input {
+  resize: none;
   border-radius: 3px;
   border: 2px solid rgb(237, 238, 239);
   margin-top: 15px;
