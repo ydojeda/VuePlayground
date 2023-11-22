@@ -11,6 +11,7 @@
       />
 
       <div class="posts-list-container">
+        <p class="empty-blog" v-if="!posts.length">No blog posts to show</p>
         <BlogPostCard
           v-for="post in posts"
           :post="post"
@@ -64,5 +65,8 @@ const changePostsType = (type: string) => {
 .posts-list-container {
   display: flex;
   flex-direction: column;
+}
+.empty-blog {
+  margin: 10px;
 }
 </style>
