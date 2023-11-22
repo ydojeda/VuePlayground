@@ -24,7 +24,7 @@ import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { uuid } from 'vue-uuid'
 import { useRouter } from 'vue-router'
-import PostTags from '@/components/PostTags.vue'
+import PostTags from '@/components/BlogPostTags.vue'
 import type { BlogUser } from '@/store/types'
 
 const store = useStore()
