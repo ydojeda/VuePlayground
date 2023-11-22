@@ -3,7 +3,6 @@
     <p class="current-user-name">Hi, {{ selectedUser.firstName }} &#x1F44B;</p>
     <p class="switch-user-text">View as someone else...</p>
     <div v-if="isSwitching">
-      <!-- TODO implement user selector -->
       <div>{{ selectedUser.firstName }}</div>
       <div v-for="user in allUsers" :key="user.userId">{{ user.firstName }}</div>
     </div>
