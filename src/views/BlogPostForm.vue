@@ -20,11 +20,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { uuid } from 'vue-uuid'
 import { useRouter } from 'vue-router'
 import PostTags from '@/components/PostTags.vue'
+import type { BlogUser } from '@/store/types'
 
 const store = useStore()
 const router = useRouter()
@@ -32,6 +33,7 @@ const router = useRouter()
 const body = ref('')
 const tags = ref<string[]>([])
 const isBodyFocused = ref(false)
+const currentUser = computed<BlogUser>(() => store.getters.currentUser)
 
 const addTags = (newTags: string) => {
   tags.value = [...tags.value, ...newTags.split(',')].map((tag) => tag.trim())
@@ -43,7 +45,7 @@ const savePost = () => {
   if (body.value?.length) {
     store.dispatch('createBlogPost', {
       post: {
-        userId: '1', // TODO: create global current user
+        userId: currentUser.value.userId, // TODO: create global current user
         postId: uuid.v1(),
         body: body.value,
         tags: tags.value,
