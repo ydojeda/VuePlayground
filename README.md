@@ -22,7 +22,7 @@ Use [dummyJSON](https://dummyjson.com/docs/posts) for posts and user data
 ✅ Blog Post Item
 - Similar to "Response" box on asknicely
 
-◻️ Input Fields for Create/Update Blog Post
+✅ Input Fields for Create/Update Blog Post
 - Take note of the active/non-active styling
 - Add input fields for switching users
 
