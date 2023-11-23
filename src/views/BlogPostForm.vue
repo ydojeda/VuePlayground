@@ -12,7 +12,7 @@
         @blur="isBodyFocused = false"
       />
       <div class="form-action-container">
-        <button class="cancel-button">Cancel</button>
+        <button class="cancel-button" @click="onCancel">Cancel</button>
         <button @click="savePost" class="save-button">Save</button>
       </div>
     </div>
@@ -63,6 +63,10 @@ const savePost = () => {
       name: 'blog-post-list'
     })
   }
+}
+
+const onCancel = () => {
+  router.back()
 }
 </script>
 
