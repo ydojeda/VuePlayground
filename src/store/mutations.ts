@@ -25,9 +25,11 @@ const StoreMutations: MutationTree<StoreTypes.OverallState> = {
     state.posts = [...state.posts, blogPost]
   },
   updateBlogPost(state: StoreTypes.OverallState, blogPost: StoreTypes.BlogPost) {
-    const postIndex = state.posts.findIndex((post) => post.postId === blogPost.postId)
+    const posts = [...state.posts]
+    const postIndex = posts.findIndex((post) => post.postId === blogPost.postId)
     if (postIndex >= 0) {
-      state.posts[postIndex] = blogPost
+      posts[postIndex] = blogPost
+      state.posts = posts
     }
   },
   changePostReact(state, payload: { userId: string; postId: string }) {
