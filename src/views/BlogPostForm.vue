@@ -23,17 +23,22 @@
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { uuid } from 'vue-uuid'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import PostTags from '@/components/BlogPostTags.vue'
-import type { BlogUser } from '@/store/types'
+import type { BlogPost, BlogUser } from '@/store/types'
 
 const store = useStore()
 const router = useRouter()
+const route = useRoute()
 
-const body = ref('')
-const tags = ref<string[]>([])
-const isBodyFocused = ref(false)
 const currentUser = computed<BlogUser>(() => store.getters.currentUser)
+const blogPost = computed<BlogPost | null>(() =>
+  store.getters.allPosts.find((post: BlogPost) => post.postId === route.params.id)
+)
+
+const body = ref(blogPost.value?.body ?? '')
+const tags = ref<string[]>(blogPost.value?.tags ?? [])
+const isBodyFocused = ref(false)
 
 const addTags = (newTags: string) => {
   tags.value = [...tags.value, ...newTags.split(',')].map((tag) => tag.trim())
@@ -43,14 +48,15 @@ const removeTag = (tag: string) => {
 }
 const savePost = () => {
   if (body.value?.length) {
-    store.dispatch('createBlogPost', {
+    const postData = { ...(blogPost.value ?? {}) }
+    store.dispatch(postData.postId ? 'updateBlogPost' : 'createBlogPost', {
       post: {
-        userId: currentUser.value.userId, // TODO: create global current user
-        postId: uuid.v1(),
+        userId: postData.userId ?? currentUser.value.userId,
+        reactions: postData.reactions ?? 0,
+        createDate: postData.createDate ?? new Date().toISOString(),
+        postId: postData.postId ?? uuid.v1(),
         body: body.value,
-        tags: tags.value,
-        reactions: 0,
-        createDate: new Date().toISOString()
+        tags: tags.value
       }
     })
     router.push({

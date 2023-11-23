@@ -19,9 +19,13 @@
           <FontAwesomeIcon :icon="[hasReacted ? 'fas' : 'far', 'heart']" />
           <a onclick="">Reacts {{ post.reactions ? `(${post.reactions})` : '' }}</a>
         </div>
-        <div class="default-action-btn">
-          <FontAwesomeIcon :icon="['far', 'comment-dots']" />
-          <a onclick="">Comment</a>
+        <div
+          v-if="props.post?.userId === props.currentUserId"
+          class="default-action-btn"
+          @click="goToPostEdit"
+        >
+          <FontAwesomeIcon :icon="['far', 'pen-to-square']" />
+          <a onclick="">Edit</a>
         </div>
         <div v-if="props.post?.userId === props.currentUserId" class="delete-btn">
           <FontAwesomeIcon :icon="['far', 'trash-can']" />
@@ -39,6 +43,7 @@ import type { PropType } from 'vue'
 import type { BlogPost, BlogUser } from '@/store/types'
 import { useStore } from 'vuex'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   post: {
@@ -51,6 +56,8 @@ const props = defineProps({
   }
 })
 const store = useStore()
+const router = useRouter()
+
 const postDateStr = props.post?.createDate
   ? new Date(props.post?.createDate).toLocaleDateString()
   : ''
@@ -70,6 +77,15 @@ const toggleReaction = () => {
 const deletePost = () => {
   if (props.post?.userId === props.currentUserId) {
     store.dispatch('deleteBlogPost', props.post)
+  }
+}
+
+const goToPostEdit = () => {
+  if (props.post?.postId) {
+    router.push({
+      name: 'blog-post-edit',
+      params: { id: props.post?.postId }
+    })
   }
 }
 </script>
