@@ -54,7 +54,7 @@ const savePost = () => {
       }
     })
     router.push({
-      name: 'Blog posts list'
+      name: 'blog-post-list'
     })
   }
 }

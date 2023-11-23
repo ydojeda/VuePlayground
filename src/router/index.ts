@@ -8,17 +8,22 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Shopping List',
+      name: 'shop-list',
       component: ShoppingListPage
     },
     {
       path: '/blogpost',
-      name: 'Blog posts list',
+      name: 'blog-post-list',
       component: ToDoListPage
     },
     {
-      path: '/blogpost/form',
-      name: 'Blog post form',
+      path: '/blogpost/new ',
+      name: 'blog-post-new',
+      component: BlogPostForm
+    },
+    {
+      path: '/blogpost/:id',
+      name: 'blog-post-edit',
       component: BlogPostForm
     }
   ]
