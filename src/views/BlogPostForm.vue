@@ -98,6 +98,7 @@ h2 {
   &::placeholder {
     color: #999999;
   }
+  height: 150px;
 }
 .form-base-buttons {
   border-radius: 4px;
