@@ -1,4 +1,10 @@
-export const NavBarItemData = [
+interface NavBarItemDataInterface {
+  pathId: string
+  name: string
+  icon_code: string
+}
+
+export const NavBarItemData: NavBarItemDataInterface[] = [
   {
     pathId: '/',
     name: 'Shop List',
