@@ -1,7 +1,7 @@
 <template>
   <router-link :to="props.pathId" v-slot="{ isActive }" class="item-container">
     <div v-if="isActive" class="active-bar-indicator" />
-    <font-awesome-icon :icon="['fas', props.icon]" font-size="25" />
+    <FontAwesomeIcon :icon="['fas', props.icon]" font-size="25" />
   </router-link>
 </template>
 

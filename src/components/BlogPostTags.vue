@@ -5,7 +5,7 @@
     </button>
     <div v-for="tag in props.tags" :key="tag" class="tag-button">
       {{ tag }}
-      <font-awesome-icon
+      <FontAwesomeIcon
         class="remove-tag-icon"
         :icon="['fas', 'xmark']"
         @click="props.onRemoveTags(tag)"
