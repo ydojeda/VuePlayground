@@ -11,6 +11,9 @@ body {
     color: rgb(40, 54, 75);
 }
 
+/*
+    "Resetting" default element styles to have 0 padding, margin, and border
+*/
 div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
