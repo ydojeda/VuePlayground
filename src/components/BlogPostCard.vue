@@ -71,7 +71,7 @@ const allTagsStr = [
   ...(props.post?.tags ?? [])
 ]
   .filter((tag) => tag?.length)
-  .join(' &centerdot; ')
+  .join(' \u00B7 ')
 
 const toggleReaction = () => {
   store.dispatch('changePostReact', { userId: props.currentUserId, postId: props.post?.postId })
