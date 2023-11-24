@@ -7,8 +7,8 @@
         <p class="user-email-text">&centerdot; {{ user.email }}</p>
       </div>
       <p class="post-content-text">{{ props.post.body }}</p>
-      <p class="tags-text" v-if="props.post?.tags?.length">
-        {{ allTags.join(' &centerdot; ') }}
+      <p class="tags-text" v-if="allTagsStr.length">
+        {{ allTagsStr }}
       </p>
       <div class="actions-container">
         <div
@@ -19,15 +19,11 @@
           <FontAwesomeIcon :icon="[hasReacted ? 'fas' : 'far', 'heart']" />
           <a onclick="">Reacts {{ post.reactions ? `(${post.reactions})` : '' }}</a>
         </div>
-        <div
-          v-if="props.post?.userId === props.currentUserId"
-          class="default-action-btn"
-          @click="goToPostEdit"
-        >
+        <div v-if="isPostByCurrentUser" class="default-action-btn" @click="goToPostEdit">
           <FontAwesomeIcon :icon="['far', 'pen-to-square']" />
           <a onclick="">Edit</a>
         </div>
-        <div v-if="props.post?.userId === props.currentUserId" class="delete-btn">
+        <div v-if="isPostByCurrentUser" class="delete-btn">
           <FontAwesomeIcon :icon="['far', 'trash-can']" />
           <a v-on:click="deletePost">Delete</a>
         </div>
@@ -58,18 +54,24 @@ const props = defineProps({
 const store = useStore()
 const router = useRouter()
 
+// Formatted date of blog post
 const postDateStr = props.post?.createDate
   ? new Date(props.post?.createDate).toLocaleDateString()
   : ''
 const user = computed<BlogUser>(() => store.getters.usersById[props.post?.userId])
+// if Current user has reacted to this post
 const hasReacted = computed(
   () => store.getters.reactionsByUser[props.currentUserId]?.[props.post?.postId]
 )
-const allTags = [
-  user.value.addressCity,
-  user.value.companyName,
+const isPostByCurrentUser = computed(() => store.getters.currentUser.userId === props.post?.userId)
+// formatted user's address and company, along with the tags of the post
+const allTagsStr = [
+  user.value.addressCity ?? '',
+  user.value.companyName ?? '',
   ...(props.post?.tags ?? [])
-].filter((tag) => tag?.length)
+]
+  .filter((tag) => tag?.length)
+  .join(' &centerdot; ')
 
 const toggleReaction = () => {
   store.dispatch('changePostReact', { userId: props.currentUserId, postId: props.post?.postId })
