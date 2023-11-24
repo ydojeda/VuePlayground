@@ -3,8 +3,8 @@
     <div
       class="menu-item"
       :class="{ 'active-menu-item': item === props.activeItem }"
-      v-for="item in props.menuItems"
-      @click="props.onPressMenuItem?.(item)"
+      v-for="item in props.menuItems as string[]"
+      @click="onPressMenuItem(item)"
       :key="item"
     >
       {{ item }}
@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
-
 const props = defineProps({
   onPressMenuItem: {
     type: Function,
@@ -29,6 +27,10 @@ const props = defineProps({
     required: true
   }
 })
+
+const onPressMenuItem = (item: string) => {
+  props.onPressMenuItem?.(item)
+}
 </script>
 
 <style scoped>
