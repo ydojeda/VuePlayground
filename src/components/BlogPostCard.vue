@@ -17,11 +17,11 @@
           :class="{ 'has-reacted': hasReacted }"
         >
           <FontAwesomeIcon :icon="[hasReacted ? 'fas' : 'far', 'heart']" />
-          <a onclick="">Reacts {{ post.reactions ? `(${post.reactions})` : '' }}</a>
+          <a>Reacts {{ post.reactions ? `(${post.reactions})` : '' }}</a>
         </div>
         <div v-if="isPostByCurrentUser" class="default-action-btn" @click="goToPostEdit">
           <FontAwesomeIcon :icon="['far', 'pen-to-square']" />
-          <a onclick="">Edit</a>
+          <a>Edit</a>
         </div>
         <div v-if="isPostByCurrentUser" class="delete-btn">
           <FontAwesomeIcon :icon="['far', 'trash-can']" />
