@@ -37,16 +37,25 @@ import type { BlogUser } from '@/store/types'
 
 const store = useStore()
 const router = useRouter()
+
+// toggle between showing users list for switching or hiding it
 const isSelectionMode = ref(false)
+// boolean for determining if user is typing in search bar
 const isSearching = ref(false)
 const searchValue = ref('')
 const timeoutVar = ref(0)
+
 const currentUser = computed<BlogUser>(() => store.getters.currentUser)
+
 const users = computed<BlogUser[]>(() => {
+  // make sure that the current user is always on top of the list
   const allUsers = [
     currentUser.value,
     ...store.getters.allUsers.filter((user: BlogUser) => user.userId !== currentUser.value.userId)
   ]
+  // if user is not typing (!isSearching) and there's a search value
+  //  return a filtered list
+  //  otherwise, return list of all users
   return !isSearching.value && searchValue.value?.length
     ? allUsers.filter((user: BlogUser) =>
         `${user.firstName}${user.lastName}${user.companyName}`
@@ -75,9 +84,12 @@ const toggleIsSearching = () => {
   isSearching.value = !isSearching.value
 }
 
+// watch changes for search value to determine if user is typing in search bar
 watch(searchValue, async () => {
   clearTimeout(timeoutVar.value)
   isSearching.value = true
+  // for every change in search value, set isSearching is true
+  // and toggle isSearching off after a certain delay
   timeoutVar.value = setTimeout(() => {
     toggleIsSearching()
   }, 300)
