@@ -96,12 +96,11 @@ watch(searchValue, async () => {
 })
 </script>
 
-<style scoped>
+<style scoped lang="less">
+@import 'src/assets/main';
+
 .header-container {
-  background-color: white;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  padding: 20px 35px;
+  .page-content-container();
   position: sticky;
   left: 0;
   right: 10px;
@@ -118,16 +117,14 @@ watch(searchValue, async () => {
   overflow-y: scroll;
 }
 .add-new-post-button {
+  .base-button();
   line-height: 32px;
-  font-size: 14px;
   color: white;
   padding: 0 16px;
-  border: rgb(36, 137, 218) 1px solid;
-  border-radius: 4px;
-  background-color: rgb(43, 155, 244);
-  cursor: pointer;
+  border: @soft-blue-hover-color 1px solid;
+  background-color: @soft-blue-color;
   &:hover {
-    background-color: #2489da;
+    background-color: @soft-blue-hover-color;
   }
 }
 .user-item {
@@ -135,24 +132,20 @@ watch(searchValue, async () => {
   margin: 4px 0;
   cursor: pointer;
   &:hover {
-    color: #2b9bf4;
-    text-decoration: #2b9bf4 underline;
+    color: @soft-blue-color;
+    text-decoration: @soft-blue-color underline;
   }
 }
 .user-company-text {
-  color: #8795a1;
+  color: @gray-color;
 }
 .selected-user-item {
-  background-color: #f8f8f8;
-  color: #2b9bf4;
+  background-color: @muted-border-color;
+  color: @soft-blue-color;
 }
 .user-search {
-  background-color: #f5f6f7;
-  outline: none;
-  border: none;
+  background-color: @muted-border-color;
   font-size: 16px;
-  padding: 8px;
-  border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
   margin: 10px 0;

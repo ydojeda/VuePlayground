@@ -15,14 +15,18 @@ import { NavBarItemData } from './constants'
 import NavBarItem from '@/components/NavigationBar/NavBarItem.vue'
 </script>
 
-<style scoped>
+<style scoped lang="less">
+@import 'src/assets/main.less';
+
+@nav-bg-color: #3c415b;
+
 .nav-container {
-  width: 62px;
+  width: @nav-bar-width;
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
   z-index: 1;
-  background-color: #3c415b;
+  background-color: @nav-bg-color;
 }
 </style>

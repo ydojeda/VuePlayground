@@ -24,14 +24,17 @@ const props = defineProps({
 </script>
 
 <style scoped lang="less">
+@inactive-item-color: #96a2ac;
+@nav-item-size: 44px;
+
 .item-container {
-  width: 44px;
-  height: 44px;
+  width: @nav-item-size;
+  height: @nav-item-size;
   align-items: center;
   justify-content: center;
   display: flex;
   padding: 9px;
-  color: #96a2ac;
+  color: @inactive-item-color;
   &.router-link-active {
     color: white;
   }
@@ -43,6 +46,6 @@ const props = defineProps({
   background-color: white;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
-  height: 44px;
+  height: @nav-item-size;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <BlogPostListHeader />
-    <div class="content-container">
+    <div class="page-content-container">
       <h1 class="title-text">Blog posts</h1>
 
       <BlogPostListMenu
@@ -50,15 +50,7 @@ const changePostsType = (type: string) => {
 </script>
 
 <style lang="less" scoped>
-.page-container {
-  margin: 0 10px;
-}
-.content-container {
-  background-color: white;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  padding: 20px 35px;
-}
+@import 'src/assets/main';
 .title-text {
   margin: 20px 0;
 }

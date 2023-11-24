@@ -71,56 +71,26 @@ const onCancel = () => {
 </script>
 
 <style scoped lang="less">
-.page-container {
-  margin: 0 10px;
-}
+@import 'src/assets/main';
+
+@body-input-height: 150px;
+
 .page-content-base {
-  background-color: white;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  padding: 20px 35px;
+  .page-content-container();
   position: relative;
 }
-h2 {
-  font-weight: 400;
-}
 .body-input {
-  resize: none;
-  border-radius: 3px;
-  border: 2px solid rgb(237, 238, 239);
-  margin-top: 15px;
-  font-size: 14px;
-  line-height: 20px;
-  font-family: 'Roboto', sans-serif;
-  padding: 8px 16px;
-  width: 100%;
-  box-sizing: border-box;
-  &:focus {
-    background-color: #f8fcfe;
-    outline: none;
-  }
-  &::placeholder {
-    color: #999999;
-  }
-  height: 150px;
-}
-.form-base-buttons {
-  border-radius: 4px;
-  padding: 8px 24px;
-  font-size: 14px;
-  outline: none;
-  border: none;
-  cursor: pointer;
+  height: @body-input-height;
 }
 .cancel-button {
-  .form-base-buttons();
-  color: #2e5bff;
+  .base-button();
+  color: @primary-btn-color;
   background-color: white;
 }
 .save-button {
-  .form-base-buttons();
+  .base-button();
   color: white;
-  background-color: #2e5bff;
+  background-color: @primary-btn-color;
 }
 .form-action-container {
   margin: 20px 0 0 0;

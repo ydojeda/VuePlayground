@@ -93,20 +93,26 @@ const goToPostEdit = () => {
 </script>
 
 <style scoped lang="less">
+@import 'src/assets/main';
+
+@avatar-border-color: rgb(30, 227, 137);
+
+@avatar-size: 60px;
+
 .card-container {
   position: relative;
   border-radius: 3px;
-  border: rgb(245, 246, 247) 2px solid;
+  border: @muted-border-color 2px solid;
   padding: 20px 20px 15px 15px;
   margin-top: 40px;
   flex: 1;
   display: flex;
 }
 .avatar-img {
-  width: 60px;
-  height: 60px;
+  width: @avatar-size;
+  height: @avatar-size;
   border-radius: 50%;
-  border: rgb(30, 227, 137) solid 5px;
+  border: @avatar-border-color solid 5px;
   margin-right: 10px;
 }
 .post-content-container {
@@ -125,14 +131,14 @@ const goToPostEdit = () => {
 }
 .user-email-text {
   font-size: 15px;
-  color: rgb(147, 153, 162);
+  color: @gray-color;
 }
 .post-content-text {
   font-size: 18px;
   margin-top: 10px;
 }
 .tags-text {
-  color: rgb(167, 172, 179);
+  color: @gray-color;
   font-size: 12px;
   line-height: 20px;
   margin-top: 10px;
@@ -145,31 +151,29 @@ const goToPostEdit = () => {
   position: absolute;
   right: 20px;
   top: 15px;
-  color: rgb(147, 153, 162);
+  color: @gray-color;
   font-size: 12px;
   text-align: right;
   z-index: 1;
 }
 .default-action-btn {
+  .base-button();
+  color: @gray-color;
   padding: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #9399a2;
-  cursor: pointer;
   &:hover {
-    color: #2b9bf4;
+    color: @soft-blue-color;
   }
   & a {
     margin-left: 5px;
   }
 }
 .has-reacted {
-  color: #2b9bf4;
+  color: @soft-blue-color;
 }
 .delete-btn {
   .default-action-btn();
   &:hover {
-    color: #f44d3d;
+    color: @red-color;
   }
 }
 </style>

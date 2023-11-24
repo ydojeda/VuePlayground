@@ -33,23 +33,26 @@ const onPressMenuItem = (item: string) => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+@import 'src/assets/main';
+@menu-width: 80px;
+
 .menu-container {
   display: flex;
 }
 .menu-item {
   display: flex;
-  min-width: 80px;
+  min-width: @menu-width;
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 500;
   margin-right: 10px;
   justify-content: center;
   &:hover {
-    color: #2b9bf4;
+    color: @soft-blue-color;
   }
 }
 .active-menu-item {
-  border-bottom: 1px solid rgb(0, 126, 255);
+  border-bottom: 1px solid @soft-blue-color;
 }
 </style>

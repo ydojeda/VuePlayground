@@ -56,6 +56,12 @@ const onAddTags = () => {
 </script>
 
 <style scoped lang="less">
+@import 'src/assets/main';
+
+@tag-bg-color: #dee6ff;
+@new-tag-width: 300px;
+@textarea-active-color: #f8fcfe;
+
 .tags-container {
   margin: 10px 0;
   display: flex;
@@ -71,15 +77,15 @@ const onAddTags = () => {
 }
 .new-tag-button {
   .base-button();
-  color: #2e5bff;
-  border: 1px solid #2e5bff;
+  color: @primary-btn-color;
+  border: 1px solid @primary-btn-color;
   background-color: white;
 }
 .tag-button {
   .base-button();
   color: rgb(46, 91, 255);
   border: none;
-  background-color: #dee6ff;
+  background-color: @tag-bg-color;
   margin-left: 5px;
 }
 .remove-tag-icon {
@@ -88,8 +94,8 @@ const onAddTags = () => {
 .new-tag-input-container {
   position: absolute;
   border-radius: 6px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  width: 300px;
+  box-shadow: 0 2px 4px 0 @shadow-color;
+  width: @new-tag-width;
   padding: 10px 10px;
   font-size: 14px;
   background-color: white;
@@ -98,18 +104,18 @@ const onAddTags = () => {
 }
 .new-tag-input {
   border-radius: 3px;
-  border: 1px solid rgb(224, 231, 255);
+  border: 1px solid @tag-bg-color;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
   padding: 8px 16px;
   width: 100%;
   box-sizing: border-box;
   &:focus {
-    background-color: #f8fcfe;
+    background-color: @textarea-active-color;
     outline: none;
   }
   &::placeholder {
-    color: #999999;
+    color: @gray-color;
   }
 }
 </style>
