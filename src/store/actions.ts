@@ -2,8 +2,6 @@ import { type ActionTree } from 'vuex'
 import * as StoreTypes from '@/store/types'
 import type { ResActionsPayload } from '@/store/types'
 
-// const
-
 const StoreActions: ActionTree<StoreTypes.OverallState, any> = {
   resetUserData({ commit }, payload?: ResActionsPayload) {
     const stateData = { users: {}, posts: {}, currentUser: null as any }
