@@ -6,7 +6,12 @@
         :current-user="currentUser"
         :user-id="currentUser.userId"
       />
-      <button @click="goToNewForm" class="add-new-post-button">New Post</button>
+      <div>
+        <button @click="resetData" class="reset-data-button">
+          <FontAwesomeIcon :icon="['fas', 'rotate-right']" /> Reset
+        </button>
+        <button @click="goToNewForm" class="add-new-post-button">New Post</button>
+      </div>
     </div>
 
     <div v-if="isSelectionMode">
@@ -34,6 +39,7 @@ import { useStore } from 'vuex'
 import UserSwitcher from '@/components/UserSwitcher.vue'
 import { useRouter } from 'vue-router'
 import type { BlogUser } from '@/store/types'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const store = useStore()
 const router = useRouter()
@@ -94,6 +100,11 @@ watch(searchValue, async () => {
     toggleIsSearching()
   }, 300)
 })
+
+// force fetch blog and user data from DummyJSON
+const resetData = () => {
+  store.dispatch('resetUserData')
+}
 </script>
 
 <style scoped lang="less">
@@ -116,16 +127,26 @@ watch(searchValue, async () => {
   max-height: 150px;
   overflow-y: scroll;
 }
-.add-new-post-button {
+.action-button {
   .base-button();
   line-height: 32px;
   color: white;
   padding: 0 16px;
   border: @soft-blue-hover-color 1px solid;
+}
+.add-new-post-button {
+  .action-button();
   background-color: @soft-blue-color;
   &:hover {
     background-color: @soft-blue-hover-color;
   }
+}
+.reset-data-button {
+  .action-button();
+  margin-left: 15px;
+  color: black;
+  border: none;
+  background-color: white;
 }
 .user-item {
   padding: 4px 8px;

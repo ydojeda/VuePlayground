@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <p class="current-user-name">Hi, {{ selectedUser.firstName }} &#x1F44B;</p>
-    <p class="switch-user-text">View as someone else...</p>
-    <div v-if="isSwitching">
-      <div>{{ selectedUser.firstName }}</div>
-      <div v-for="user in allUsers" :key="user.userId">{{ user.firstName }}</div>
+  <div class="main-container">
+    <div v-if="allUsers.length">
+      <p class="current-user-name">Hi, {{ selectedUser.firstName }} &#x1F44B;</p>
+      <p class="switch-user-text">View as someone else...</p>
+      <div v-if="isSwitching">
+        <div>{{ selectedUser.firstName }}</div>
+        <div v-for="user in allUsers" :key="user.userId">{{ user.firstName }}</div>
+      </div>
     </div>
+    <div v-if="!allUsers.length">Please reset data</div>
   </div>
 </template>
 
@@ -22,11 +25,12 @@ const props = defineProps({
 })
 
 const store = useStore()
+const isSwitching = ref(false)
+
 const allUsers = computed<BlogUser[]>(() =>
   store.getters.allUsers.filter((user: BlogUser) => user.userId !== props.userId)
 )
 const selectedUser = computed<BlogUser>(() => store.getters.currentUser)
-const isSwitching = ref(false)
 </script>
 
 <style scoped>
@@ -37,5 +41,10 @@ const isSwitching = ref(false)
 
 .switch-user-text {
   font-size: 11px;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
 }
 </style>
