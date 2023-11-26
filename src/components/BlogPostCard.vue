@@ -25,7 +25,7 @@
         </div>
         <div v-if="isPostByCurrentUser" class="delete-btn">
           <FontAwesomeIcon :icon="['far', 'trash-can']" />
-          <a v-on:click="deletePost">Delete</a>
+          <a @click="deletePost">Delete</a>
         </div>
       </div>
     </div>

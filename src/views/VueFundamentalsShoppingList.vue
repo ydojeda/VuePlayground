@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>{{ header }}</h1>
-    <input v-model="newItem" v-on:keyup.enter="addNewItem" type="text" placeholder="Add an item" />
+    <input v-model="newItem" @keyup.enter="addNewItem" type="text" placeholder="Add an item" />
     <label>
       <input type="checkbox" v-model="isNewItemPriority" />
       High Priority

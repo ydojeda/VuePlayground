@@ -6,7 +6,7 @@
         :current-user="currentUser"
         :user-id="currentUser.userId"
       />
-      <button v-on:click="goToNewForm" class="add-new-post-button">New Post</button>
+      <button @click="goToNewForm" class="add-new-post-button">New Post</button>
     </div>
 
     <div v-if="isSelectionMode">
