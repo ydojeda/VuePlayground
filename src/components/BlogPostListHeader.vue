@@ -73,7 +73,7 @@ const users = computed<BlogUser[]>(() => {
 
 const goToNewForm = () => {
   router.push({
-    name: 'blog-post-new'
+    name: 'blog-post-form'
   })
 }
 

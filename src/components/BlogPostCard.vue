@@ -85,7 +85,7 @@ const deletePost = () => {
 const goToPostEdit = () => {
   if (props.post?.postId) {
     router.push({
-      name: 'blog-post-edit',
+      name: 'blog-post-form',
       params: { id: props.post?.postId }
     })
   }

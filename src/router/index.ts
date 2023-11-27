@@ -17,13 +17,8 @@ const router = createRouter({
       component: ToDoListPage
     },
     {
-      path: '/blogpost/new ',
-      name: 'blog-post-new',
-      component: BlogPostForm
-    },
-    {
-      path: '/blogpost/:id',
-      name: 'blog-post-edit',
+      path: '/blogpost/form/:id? ',
+      name: 'blog-post-form',
       component: BlogPostForm
     }
   ]
