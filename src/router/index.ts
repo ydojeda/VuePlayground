@@ -1,19 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Exercise1 from '../views/Exercise1.vue'
-import Exercise2 from '@/views/Exercise2.vue'
+import ShoppingListPage from '../views/VueFundamentalsShoppingList.vue'
+import ToDoListPage from '@/views/BlogPostsList.vue'
+import BlogPostForm from '@/views/BlogPostForm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'ex1',
-      component: Exercise1
+      name: 'shop-list',
+      component: ShoppingListPage
     },
     {
-      path: '/ex2',
-      name: 'ex2',
-      component: Exercise2
+      path: '/blogpost',
+      name: 'blog-post-list',
+      component: ToDoListPage
+    },
+    {
+      path: '/blogpost/form/:id? ',
+      name: 'blog-post-form',
+      component: BlogPostForm
     }
   ]
 })

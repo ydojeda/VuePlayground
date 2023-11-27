@@ -1,0 +1,51 @@
+// --- COLORS ----
+@shadow-color: rgba(0, 0, 0, 0.1);
+@muted-border-color: rgb(245, 246, 247);
+@primary-btn-color: #2e5bff;
+.page-container {
+  margin: 0 10px
+}
+@soft-blue-color: #2b9bf4;
+@soft-blue-hover-color: #2489da;
+@gray-color:  #9399a2;
+@red-color: #f44d3d;
+
+// --- CONST NUMBERS ---
+@nav-bar-width: 62px;
+
+.page-content-container {
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px @shadow-color;
+  padding: 20px 35px;
+}
+
+textarea {
+  font-family: 'Roboto', sans-serif;
+  resize: none;
+  border-radius: 3px;
+  border: 2px solid @muted-border-color;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  &:focus {
+    background-color: #f8fcfe;
+    outline: none;
+  }
+  &::placeholder {
+    color: #999999;
+  }
+}
+
+.base-button {
+  border-radius: 4px;
+  padding: 8px 24px;
+  font-size: 14px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}

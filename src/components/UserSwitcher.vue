@@ -1,0 +1,50 @@
+<template>
+  <div class="main-container">
+    <div v-if="allUsers.length">
+      <p class="current-user-name">Hi, {{ selectedUser.firstName }} &#x1F44B;</p>
+      <p class="switch-user-text">View as someone else...</p>
+      <div v-if="isSwitching">
+        <div>{{ selectedUser.firstName }}</div>
+        <div v-for="user in allUsers" :key="user.userId">{{ user.firstName }}</div>
+      </div>
+    </div>
+    <div v-if="!allUsers.length">Please reset data</div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
+import { type BlogUser } from '@/store/types'
+
+const props = defineProps({
+  userId: {
+    type: String,
+    required: true
+  }
+})
+
+const store = useStore()
+const isSwitching = ref(false)
+
+const allUsers = computed<BlogUser[]>(() =>
+  store.getters.allUsers.filter((user: BlogUser) => user.userId !== props.userId)
+)
+const selectedUser = computed<BlogUser>(() => store.getters.currentUser)
+</script>
+
+<style scoped>
+.current-user-name {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.switch-user-text {
+  font-size: 11px;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+}
+</style>

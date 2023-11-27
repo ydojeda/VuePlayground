@@ -1,25 +1,50 @@
 # VuePlayground
 
-This template should help get you started developing with Vue 3 in Vite.
+A repo for learning Vue
 
-## Recommended IDE Setup
+## VueSchool Tutorials
+Follow through [Vue 3 fundamentals](https://vueschool.io/courses/vue-js-fundamentals-with-the-composition-api) and [component fundamentals](https://vueschool.io/courses/vue-js-3-components-fundamentals).
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+✅ **Output**: Functioning basic shopping list app that can create and toggle shopping list items
 
-## Type Support for `.vue` Imports in TS
+## CRUD Blog Post
+Use [dummyJSON](https://dummyjson.com/docs/posts) for posts and user data
+### Goals
+- Build components similar to asknicely site and use LESS
+- Use Vue Router for performing create/update functionality
+- Use Vuex state management and store list items
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### Main Components
+✅ Vertical Navigation Bar
+- sticky to the left side
+- two nav items: the VueSchool Tutorials output page, and the CRUD Todo List
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+✅ Blog Post Item
+- Similar to "Response" box on asknicely
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+✅ Input Fields for Create/Update Blog Post
+- Take note of the active/non-active styling
+- Add input fields for switching users
 
-## Customize configuration
+### Data Description
+(For creating a store)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+**User**
+- id
+- firstName
+- lastName
+- email
+- image
+- address_city
+- company_name
+
+**Posts**
+- id
+- text
+- userId
+- tags
+- reactions  
+
 
 ## Project Setup
 
@@ -31,16 +56,4 @@ npm install
 
 ```sh
 npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```

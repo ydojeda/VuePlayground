@@ -1,35 +1,18 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import NavBar from '@/components/NavigationBar/NavBar.vue'
+import { onMounted } from 'vue'
+import { useStore } from 'vuex'
+
+onMounted(() => {
+  const store = useStore()
+  store.dispatch('resetUserData')
+})
 </script>
 
 <template>
   <header>
-    <nav>
-      <RouterLink to="/">Vue Fundamentals</RouterLink>
-      <RouterLink to="/ex2">Component Fundamentals</RouterLink>
-    </nav>
+    <NavBar />
   </header>
   <RouterView />
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-</style>
